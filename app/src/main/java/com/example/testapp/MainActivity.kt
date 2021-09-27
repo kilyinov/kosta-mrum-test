@@ -10,6 +10,8 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
 import com.example.testapp.databinding.ActivityMainBinding
+import com.appdynamics.eumagent.runtime.AgentConfiguration
+import com.appdynamics.eumagent.runtime.Instrumentation;
 
 class MainActivity : AppCompatActivity() {
 
@@ -18,7 +20,15 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        Instrumentation.start(
+            AgentConfiguration.builder()
+            .withAppKey("SY-AAB-HPG")
+            .withContext(getApplicationContext())
+            // Configure the iOS Agent to report the metrics and screenshots to
+            // the SaaS EUM Server in APAC.
+            .withCollectorURL("https://syd-col.eum-appdynamics.com")
+            .withScreenshotURL("https://syd-image.eum-appdynamics.com")
+            .build());
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 

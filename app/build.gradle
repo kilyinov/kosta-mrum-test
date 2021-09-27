@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'adeum'
 }
 
 android {
@@ -44,7 +45,20 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
     implementation 'androidx.navigation:navigation-fragment-ktx:2.3.0'
     implementation 'androidx.navigation:navigation-ui-ktx:2.3.0'
+    implementation 'com.appdynamics:appdynamics-runtime:21.+' // this line added for AppDynamics
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+}
+
+adeum { // this section added for AppDynamics
+    account {
+        name 'AppdynamicsInc.a0Q2H00000ISHwMUAX'
+        licenseKey '955c25e4-fe3c-47be-8b8c-f266b63373ad'
+    }
+    proguardMappingFileUpload {
+        failBuildOnUploadFailure true //should build fail if upload fails? Defaults to false.
+
+        enabled true //enables automatic uploads. Defaults to true.
+    }
 }
